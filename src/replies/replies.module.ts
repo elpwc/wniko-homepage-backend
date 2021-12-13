@@ -4,6 +4,6 @@ import { RepliesController } from './replies.controller';
 
 @Module({
   controllers: [RepliesController],
-  providers: [RepliesService]
+  providers: [RepliesService],
 })
 export class RepliesModule {}

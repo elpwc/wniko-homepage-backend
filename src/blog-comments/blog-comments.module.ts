@@ -4,6 +4,6 @@ import { BlogCommentsController } from './blog-comments.controller';
 
 @Module({
   controllers: [BlogCommentsController],
-  providers: [BlogCommentsService]
+  providers: [BlogCommentsService],
 })
 export class BlogCommentsModule {}

@@ -4,6 +4,6 @@ import { IllustsController } from './illusts.controller';
 
 @Module({
   controllers: [IllustsController],
-  providers: [IllustsService]
+  providers: [IllustsService],
 })
 export class IllustsModule {}
