@@ -1,5 +1,3 @@
-import { Technology } from 'src/technologies/entities/technology.entity';
-
 export class Project {
   name: string;
   description: string;
@@ -7,5 +5,6 @@ export class Project {
   githuburl: string;
   starttime: Date;
   version: string;
-  technologies: Technology[];
+  technologies: string;
+  headImageUrl: string;
 }

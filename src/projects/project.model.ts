@@ -1,6 +1,5 @@
 import { Column, HasMany, Model, Table } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize/types';
-import { TechnologyModel } from 'src/technologies/technology.model';
 
 @Table
 export class ProjectModel extends Model {
@@ -33,6 +32,11 @@ export class ProjectModel extends Model {
   description: string;
 
   @Column({
+    type: DataTypes.STRING(1024),
+  })
+  imageUrl: string;
+
+  @Column({
     type: DataTypes.TIME,
   })
   starttime: Date;
@@ -42,6 +46,6 @@ export class ProjectModel extends Model {
   })
   version: string;
 
-  @HasMany(() => TechnologyModel)
-  technologies: TechnologyModel[];
+  @Column({ type: DataTypes.STRING(10240) })
+  technologies: string;
 }
