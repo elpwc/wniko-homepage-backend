@@ -9,7 +9,6 @@ import { RepliesModule } from './replies/replies.module';
 import { VisitorsModule } from './visitors/visitors.module';
 import { IllustsModule } from './illusts/illusts.module';
 import { SequelizeModule } from '@nestjs/sequelize';
-
 import { ProjectModel } from './projects/project.model';
 import { dbConfig } from './dbconfig';
 
