@@ -37,4 +37,4 @@ lerna-debug.log*
 /db/dbconfigs/config/dbconfig.debug.json
 /db/dbconfigs/config/dbconfig.json
 
-/src/dbconfig.ts
+ormconfig.json
