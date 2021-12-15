@@ -1,26 +1,27 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/sequelize';
+import { InjectRepository } from '@nestjs/typeorm';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
-import { ProjectModel } from './project.model';
+import { ProjectEntity } from './entities/project.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ProjectsService {
   constructor(
-    @InjectModel(ProjectModel)
-    private projectModel: typeof ProjectModel,
+    @InjectRepository(ProjectEntity)
+    private projectsRepository: Repository<ProjectEntity>,
   ) {}
 
   create(createProjectDto: CreateProjectDto) {
-    return this.projectModel.create(createProjectDto);
+    return this.projectsRepository.create(createProjectDto);
   }
 
   async findAll() {
-    return this.projectModel.findAll();
+    return this.projectsRepository.find();
   }
 
   findOne(id: number) {
-    return this.projectModel.findOne({
+    return this.projectsRepository.findOne({
       where: {
         id,
       },
@@ -31,8 +32,7 @@ export class ProjectsService {
     return `This action updates a #${id} project`;
   }
 
-  async remove(id: number) {
-    const project = await this.findOne(id);
-    await project.destroy();
+  async remove(id: number): Promise<void> {
+    await this.projectsRepository.delete(id);
   }
 }

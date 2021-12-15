@@ -8,17 +8,19 @@ import { BlogSubjectsModule } from './blog-subjects/blog-subjects.module';
 import { RepliesModule } from './replies/replies.module';
 import { VisitorsModule } from './visitors/visitors.module';
 import { IllustsModule } from './illusts/illusts.module';
-import { SequelizeModule } from '@nestjs/sequelize';
-import { ProjectModel } from './projects/project.model';
+
+import { ProjectEntity } from './projects/entities/project.entity';
+
 import { dbConfig } from './dbconfig';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   controllers: [AppController],
   providers: [AppService],
   imports: [
-    SequelizeModule.forRoot({
+    TypeOrmModule.forRoot({
       ...dbConfig,
-      models: [ProjectModel],
+      models: [ProjectEntity],
       autoLoadModels: true,
       synchronize: true,
     }),
