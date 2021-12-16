@@ -24,8 +24,14 @@ export class ProjectEntity {
   version: string;
 
   @Column()
-  technologies: string;
+  technologies: string[];
 
   @Column()
   headImageUrl: string;
+
+  @Column({ default: new Date() })
+  createTime: Date;
+
+  @Column({ default: new Date() })
+  updateTime: Date;
 }

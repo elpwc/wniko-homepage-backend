@@ -6,5 +6,5 @@ export class CreateProjectDto {
   readonly githuburl: string;
   readonly starttime: Date;
   readonly version: string;
-  readonly technologies: string;
+  readonly technologies: string[];
 }

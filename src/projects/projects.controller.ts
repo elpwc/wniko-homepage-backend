@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   Logger,
+  Put,
 } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { CreateProjectDto } from './dto/create-project.dto';
