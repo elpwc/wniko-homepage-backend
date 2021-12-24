@@ -1,3 +1,5 @@
+import { TechnologyEntity } from '../entities/technology.entity';
+
 export class CreateProjectDto {
   readonly name: string;
   readonly description: string;

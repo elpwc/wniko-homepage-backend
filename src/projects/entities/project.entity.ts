@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
+import { TechnologyEntity } from './technology.entity';
 
 @Entity()
 export class ProjectEntity {
@@ -23,7 +24,9 @@ export class ProjectEntity {
   @Column()
   version: string;
 
-  @Column()
+  //@ManyToMany(() => TechnologyEntity, (technology) => technology.projects)
+  //technologies: TechnologyEntity[];
+  @Column('simple-array')
   technologies: string[];
 
   @Column()
