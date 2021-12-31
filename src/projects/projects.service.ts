@@ -28,8 +28,8 @@ export class ProjectsService {
     });
   }
 
-  update(id: number, updateProjectDto: UpdateProjectDto) {
-    return `This action updates a #${id} project`;
+  async update(id: number, updateProjectDto: UpdateProjectDto) {
+    return await this.projectsRepository.update(id, updateProjectDto);
   }
 
   async remove(id: number): Promise<void> {

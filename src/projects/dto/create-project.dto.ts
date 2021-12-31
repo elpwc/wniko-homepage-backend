@@ -1,4 +1,4 @@
-import { TechnologyEntity } from '../entities/technology.entity';
+import { DevState } from 'src/enums/DevState';
 
 export class CreateProjectDto {
   readonly name: string;
@@ -9,4 +9,6 @@ export class CreateProjectDto {
   readonly starttime: Date;
   readonly version: string;
   readonly technologies: string[];
+  readonly state: DevState;
+  readonly isprivate: boolean;
 }

@@ -1,5 +1,5 @@
+import { DevState } from 'src/enums/DevState';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
-import { TechnologyEntity } from './technology.entity';
 
 @Entity()
 export class ProjectEntity {
@@ -32,9 +32,9 @@ export class ProjectEntity {
   @Column()
   headImageUrl: string;
 
-  @Column({ default: new Date() })
-  createTime: Date;
+  @Column()
+  state: DevState;
 
-  @Column({ default: new Date() })
-  updateTime: Date;
+  @Column({ default: false })
+  isprivate: boolean;
 }
