@@ -1,26 +1,34 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateBlogDto } from './dto/create-blog.dto';
 import { UpdateBlogDto } from './dto/update-blog.dto';
+import { BlogEntity } from './entities/blog.entity';
 
 @Injectable()
 export class BlogsService {
-  create(createBlogDto: CreateBlogDto) {
-    return 'This action adds a new blog';
+  constructor(
+    @InjectRepository(BlogEntity)
+    private blogsRepository: Repository<BlogEntity>,
+  ) {}
+
+  async create(createBlogDto: CreateBlogDto) {
+    return await this.blogsRepository.save(createBlogDto);
   }
 
   findAll() {
-    return `This action returns all blogs`;
+    return this.blogsRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} blog`;
+    return this.blogsRepository.findOne({ where: { id } });
   }
 
-  update(id: number, updateBlogDto: UpdateBlogDto) {
-    return `This action updates a #${id} blog`;
+  async update(id: number, updateBlogDto: UpdateBlogDto) {
+    return await this.blogsRepository.update(id, updateBlogDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} blog`;
+  async remove(id: number) {
+    return await this.blogsRepository.delete(id);
   }
 }
