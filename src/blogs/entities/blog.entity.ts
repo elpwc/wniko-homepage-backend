@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class BlogEntity {
+export class Blog {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
@@ -23,7 +23,9 @@ export class BlogEntity {
   @Column()
   access: 'public' | 'urasekai' | 'private';
   @Column()
-  createTime: Date;
+  createTime: string;
   @Column()
-  updateTime: Date;
+  updateTime: string;
+  @Column()
+  isDraft: boolean;
 }

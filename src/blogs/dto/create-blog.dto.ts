@@ -8,6 +8,7 @@ export class CreateBlogDto {
   content: string;
   headPageUrl: string;
   access: 'public' | 'urasekai' | 'private';
-  createTime: Date;
-  updateTime: Date;
+  createTime: string;
+  updateTime: string;
+  isDraft: boolean;
 }

@@ -2,14 +2,14 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
-import { ProjectEntity } from './entities/project.entity';
+import { Project } from './entities/project.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class ProjectsService {
   constructor(
-    @InjectRepository(ProjectEntity)
-    private projectsRepository: Repository<ProjectEntity>,
+    @InjectRepository(Project)
+    private projectsRepository: Repository<Project>,
   ) {}
 
   async create(createProjectDto: CreateProjectDto) {

@@ -3,13 +3,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateBlogDto } from './dto/create-blog.dto';
 import { UpdateBlogDto } from './dto/update-blog.dto';
-import { BlogEntity } from './entities/blog.entity';
+import { Blog } from './entities/blog.entity';
 
 @Injectable()
 export class BlogsService {
   constructor(
-    @InjectRepository(BlogEntity)
-    private blogsRepository: Repository<BlogEntity>,
+    @InjectRepository(Blog)
+    private blogsRepository: Repository<Blog>,
   ) {}
 
   async create(createBlogDto: CreateBlogDto) {

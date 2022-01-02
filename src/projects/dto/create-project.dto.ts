@@ -6,7 +6,7 @@ export class CreateProjectDto {
   readonly url: string;
   readonly headImageUrl: string;
   readonly githuburl: string;
-  readonly starttime: Date;
+  readonly starttime: string;
   readonly version: string;
   readonly technologies: string[];
   readonly state: DevState;

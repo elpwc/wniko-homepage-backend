@@ -2,7 +2,7 @@ import { DevState } from 'src/enums/DevState';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
 
 @Entity()
-export class ProjectEntity {
+export class Project {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -19,7 +19,7 @@ export class ProjectEntity {
   githuburl: string;
 
   @Column()
-  starttime: Date;
+  starttime: string;
 
   @Column()
   version: string;

@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Logger,
 } from '@nestjs/common';
 import { BlogsService } from './blogs.service';
 import { CreateBlogDto } from './dto/create-blog.dto';
@@ -17,6 +18,7 @@ export class BlogsController {
 
   @Post()
   create(@Body() createBlogDto: CreateBlogDto) {
+    Logger.log('New blog insert. ', createBlogDto.title);
     return this.blogsService.create(createBlogDto);
   }
 
