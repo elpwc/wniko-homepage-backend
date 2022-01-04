@@ -1,18 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { BlogSubjectsService } from 'src/blog-subjects/blog-subjects.service';
+import { BlogSubject } from 'src/blog-subjects/entities/blog-subject.entity';
 import { Repository } from 'typeorm';
 import { CreateBlogDto } from './dto/create-blog.dto';
 import { UpdateBlogDto } from './dto/update-blog.dto';
 import { Blog } from './entities/blog.entity';
+import _ from 'lodash';
 
 @Injectable()
 export class BlogsService {
   constructor(
     @InjectRepository(Blog)
     private blogsRepository: Repository<Blog>,
+    @InjectRepository(BlogSubject)
+    private blogSubjectsRepository: Repository<BlogSubject>,
   ) {}
 
   async create(createBlogDto: CreateBlogDto) {
+    const blog = new Blog();
+    _.assign(blog, createBlogDto);
+    blog.subject = await BlogSubjectsService.prototype.findOne(
+      createBlogDto.subjectId,
+    );
     return await this.blogsRepository.save(createBlogDto);
   }
 

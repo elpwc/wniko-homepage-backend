@@ -1,4 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BlogSubject } from 'src/blog-subjects/entities/blog-subject.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  RelationId,
+} from 'typeorm';
 
 @Entity()
 export class Blog {
@@ -10,8 +18,6 @@ export class Blog {
   author: string;
   @Column()
   viewCount: number;
-  @Column()
-  subject: number;
   @Column()
   lang: string;
   @Column()
@@ -28,4 +34,7 @@ export class Blog {
   updateTime: string;
   @Column()
   isDraft: boolean;
+  @ManyToOne((type) => BlogSubject, (subject) => subject.blogs)
+  @JoinColumn({ name: 'subjectId' })
+  subject: BlogSubject;
 }

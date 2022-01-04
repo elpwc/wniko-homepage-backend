@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Logger,
 } from '@nestjs/common';
 import { BlogSubjectsService } from './blog-subjects.service';
 import { CreateBlogSubjectDto } from './dto/create-blog-subject.dto';
@@ -17,6 +18,7 @@ export class BlogSubjectsController {
 
   @Post()
   create(@Body() createBlogSubjectDto: CreateBlogSubjectDto) {
+    Logger.log('New blog subject insert. ', createBlogSubjectDto.title);
     return this.blogSubjectsService.create(createBlogSubjectDto);
   }
 

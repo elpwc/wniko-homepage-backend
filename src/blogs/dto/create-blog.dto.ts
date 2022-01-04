@@ -1,8 +1,10 @@
+import { BlogSubject } from "src/blog-subjects/entities/blog-subject.entity";
+
 export class CreateBlogDto {
   title: string;
   author: string;
   viewCount: number;
-  subject: number;
+  subjectId: number;
   lang: string;
   location: string;
   content: string;
