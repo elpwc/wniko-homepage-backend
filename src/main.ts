@@ -4,7 +4,7 @@ import * as helmet from 'helmet';
 import * as csurf from 'csurf';
 import { Logger } from '@nestjs/common';
 
-const PORT = 3001; //process.env.PORT || 8000;
+const PORT = 8001; //process.env.PORT || 8000;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
