@@ -1,4 +1,4 @@
-import { DevState } from 'src/enums/DevState';
+import { DevStatus } from 'src/enums/DevStatus';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
 
 @Entity()
@@ -33,7 +33,7 @@ export class Project {
   headImageUrl: string;
 
   @Column()
-  state: DevState;
+  state: DevStatus;
 
   @Column({ default: false })
   isprivate: boolean;

@@ -35,6 +35,5 @@ export class Blog {
   @Column()
   isDraft: boolean;
   @ManyToOne((type) => BlogSubject, (subject) => subject.blogs)
-  @JoinColumn({ name: 'subjectId' })
   subject: BlogSubject;
 }

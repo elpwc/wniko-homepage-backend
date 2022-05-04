@@ -1,4 +1,4 @@
-export enum DevState {
+export enum DevStatus {
   Empty,
   Developping,
   Planning,
