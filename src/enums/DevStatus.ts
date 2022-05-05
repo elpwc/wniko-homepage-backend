@@ -1,7 +1,7 @@
 export enum DevStatus {
-  Empty,
-  Developping,
-  Planning,
-  Done,
-  Dispose,
+  Empty = 'empty',
+  Developping = 'dev',
+  Planning = 'plan',
+  Done = 'done',
+  Dispose = 'dispose',
 }

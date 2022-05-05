@@ -44,7 +44,7 @@ export class Project {
 
   @Column()
   @ApiProperty()
-  state: DevStatus;
+  status: DevStatus;
 
   @Column({ default: false })
   @ApiProperty()
