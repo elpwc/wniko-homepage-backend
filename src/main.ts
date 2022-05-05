@@ -3,7 +3,11 @@ import { AppModule } from './app.module';
 import * as helmet from 'helmet';
 import * as csurf from 'csurf';
 import { Logger } from '@nestjs/common';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import {
+  DocumentBuilder,
+  SwaggerDocumentOptions,
+  SwaggerModule,
+} from '@nestjs/swagger';
 import * as cors from 'cors';
 
 const PORT = 8001; //process.env.PORT || 8000;
@@ -13,7 +17,7 @@ async function bootstrap() {
 
   app.enableCors();
 
-  const options = new DocumentBuilder()
+  const config = new DocumentBuilder()
     .setTitle('Wniko API')
     .setDescription('')
     .setVersion('1.0.0')
@@ -21,7 +25,11 @@ async function bootstrap() {
     //.setBasePath('http://localhost:8001')
     .build();
 
-  const document = SwaggerModule.createDocument(app, options);
+  const options: SwaggerDocumentOptions = {
+    operationIdFactory: (controllerKey: string, methodKey: string) => methodKey,
+  };
+
+  const document = SwaggerModule.createDocument(app, config, options);
 
   SwaggerModule.setup('/api', app, document);
 
