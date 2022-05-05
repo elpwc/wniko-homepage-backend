@@ -4,13 +4,14 @@ import * as helmet from 'helmet';
 import * as csurf from 'csurf';
 import { Logger } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import * as path from 'path';
-import * as fs from 'fs';
+import * as cors from 'cors';
 
 const PORT = 8001; //process.env.PORT || 8000;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  app.enableCors();
 
   const options = new DocumentBuilder()
     .setTitle('Wniko API')
@@ -21,8 +22,6 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
-
-  fs.writeFileSync(path.resolve(process.cwd(), './swagger.json'), JSON.stringify(document));
 
   SwaggerModule.setup('/api', app, document);
 
@@ -35,6 +34,14 @@ async function bootstrap() {
 
   //CSRF保护：跨站点请求伪造
   //app.use(csurf());
+
+  app.use(
+    cors({
+      origin: 'http://localhost:3000',
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+      allowedHeaders: ['Content-Type'],
+    }),
+  );
 
   await app.listen(PORT, () => {
     Logger.log('Service start.');
