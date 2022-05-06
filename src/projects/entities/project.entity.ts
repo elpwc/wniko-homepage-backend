@@ -12,23 +12,23 @@ export class Project {
   @ApiProperty()
   name: string;
 
-  @Column()
+  @Column({nullable: true})
   @ApiProperty()
   description: string;
 
-  @Column()
+  @Column({nullable: true})
   @ApiProperty()
   url: string;
 
-  @Column()
+  @Column({nullable: true})
   @ApiProperty()
   githuburl: string;
 
-  @Column()
+  @Column({nullable: true})
   @ApiProperty()
   starttime: string;
 
-  @Column()
+  @Column({nullable: true})
   @ApiProperty()
   version: string;
 
@@ -38,7 +38,7 @@ export class Project {
   @ApiProperty()
   technologies: string[];
 
-  @Column()
+  @Column({nullable: true})
   @ApiProperty()
   headImageUrl: string;
 
