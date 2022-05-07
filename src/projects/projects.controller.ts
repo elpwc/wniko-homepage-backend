@@ -30,34 +30,31 @@ export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) {}
 
   @Post()
-  @ApiOperation({ operationId: 'postProject', description: '' })
-  create(@Body() createProjectDto: CreateProjectDto) {
+  postProject(@Body() createProjectDto: CreateProjectDto) {
     console.log(createProjectDto);
     Logger.log('New project insert. ', createProjectDto.name);
     return this.projectsService.create(createProjectDto);
   }
 
   @Get()
-  @ApiTags('getAllProjects')
-  @ApiOperation({ operationId: 'getProjects', description: '' })
   @ApiPaginatedResponse(Project)
-  findAll(): Promise<Project[]> {
+  getAllProject(): Promise<Project[]> {
     return this.projectsService.findAll();
   }
 
   @Get(':id')
   @ApiResponse({ status: 200, description: 'success', type: Project })
-  findOne(@Param('id') id: string) {
+  getProject(@Param('id') id: string) {
     return this.projectsService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProjectDto: UpdateProjectDto) {
+  patchProject(@Param('id') id: string, @Body() updateProjectDto: UpdateProjectDto) {
     return this.projectsService.update(+id, updateProjectDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  deleteProject(@Param('id') id: string) {
     return this.projectsService.remove(+id);
   }
 }
