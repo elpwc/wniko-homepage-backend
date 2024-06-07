@@ -30,6 +30,7 @@
     "csurf": "^1.11.0",
     "express-session": "^1.17.2",
     "helmet": "^4.6.0",
+    "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "mysql2": "^2.3.3",
     "reflect-metadata": "^0.1.13",

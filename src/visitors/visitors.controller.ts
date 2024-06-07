@@ -10,8 +10,12 @@ import {
 import { VisitorsService } from './visitors.service';
 import { CreateVisitorDto } from './dto/create-visitor.dto';
 import { UpdateVisitorDto } from './dto/update-visitor.dto';
+import { ApiTags, ApiExtraModels } from '@nestjs/swagger';
+import { ListDto } from 'src/responseData';
 
 @Controller('visitors')
+@ApiTags('Visitors')
+@ApiExtraModels(ListDto)
 export class VisitorsController {
   constructor(private readonly visitorsService: VisitorsService) {}
 

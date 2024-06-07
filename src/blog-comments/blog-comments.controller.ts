@@ -10,8 +10,12 @@ import {
 import { BlogCommentsService } from './blog-comments.service';
 import { CreateBlogCommentDto } from './dto/create-blog-comment.dto';
 import { UpdateBlogCommentDto } from './dto/update-blog-comment.dto';
+import { ApiTags, ApiExtraModels } from '@nestjs/swagger';
+import { ListDto } from 'src/responseData';
 
 @Controller('blog-comments')
+@ApiTags('BlogComments')
+@ApiExtraModels(ListDto)
 export class BlogCommentsController {
   constructor(private readonly blogCommentsService: BlogCommentsService) {}
 

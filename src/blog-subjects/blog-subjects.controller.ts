@@ -11,8 +11,12 @@ import {
 import { BlogSubjectsService } from './blog-subjects.service';
 import { CreateBlogSubjectDto } from './dto/create-blog-subject.dto';
 import { UpdateBlogSubjectDto } from './dto/update-blog-subject.dto';
+import { ApiTags, ApiExtraModels } from '@nestjs/swagger';
+import { ListDto } from 'src/responseData';
 
 @Controller('blog-subjects')
+@ApiTags('BlogSubjects')
+@ApiExtraModels(ListDto)
 export class BlogSubjectsController {
   constructor(private readonly blogSubjectsService: BlogSubjectsService) {}
 

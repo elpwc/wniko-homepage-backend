@@ -10,8 +10,12 @@ import {
 import { RepliesService } from './replies.service';
 import { CreateReplyDto } from './dto/create-reply.dto';
 import { UpdateReplyDto } from './dto/update-reply.dto';
+import { ApiTags, ApiExtraModels } from '@nestjs/swagger';
+import { ListDto } from 'src/responseData';
 
 @Controller('replies')
+@ApiTags('Replies')
+@ApiExtraModels(ListDto)
 export class RepliesController {
   constructor(private readonly repliesService: RepliesService) {}
 

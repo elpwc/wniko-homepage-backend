@@ -10,8 +10,12 @@ import {
 import { IllustsService } from './illusts.service';
 import { CreateIllustDto } from './dto/create-illust.dto';
 import { UpdateIllustDto } from './dto/update-illust.dto';
+import { ApiTags, ApiExtraModels } from '@nestjs/swagger';
+import { ListDto } from 'src/responseData';
 
 @Controller('illusts')
+@ApiTags('Illusts')
+@ApiExtraModels(ListDto)
 export class IllustsController {
   constructor(private readonly illustsService: IllustsService) {}
 
