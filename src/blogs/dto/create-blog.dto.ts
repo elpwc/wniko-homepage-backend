@@ -5,6 +5,7 @@ export class CreateBlogDto {
   author: string;
   viewCount: number;
   subjectId: number;
+  subject: string;
   lang: string;
   location: string;
   content: string;

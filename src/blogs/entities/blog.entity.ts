@@ -34,6 +34,8 @@ export class Blog {
   updateTime: string;
   @Column()
   isDraft: boolean;
-  @ManyToOne((type) => BlogSubject, (subject) => subject.blogs)
-  subject: BlogSubject;
+  //@ManyToOne((type) => BlogSubject, (subject) => subject.blogs)
+  //subject: BlogSubject;
+  @Column()
+  subject: string;
 }
