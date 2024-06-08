@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BlogSubjectsService } from 'src/blog-subjects/blog-subjects.service';
-import { Repository } from 'typeorm';
+import { Repository, createQueryBuilder } from 'typeorm';
 import { CreateBlogDto } from './dto/create-blog.dto';
 import { UpdateBlogDto } from './dto/update-blog.dto';
 import { Blog } from './entities/blog.entity';
@@ -18,8 +18,29 @@ export class BlogsService {
     return await this.blogsRepository.save(createBlogDto);
   }
 
-  findAll() {
-    return this.blogsRepository.find();
+  async findAll(query) {
+    const qb = await this.blogsRepository.createQueryBuilder('blogs');
+    qb.where('1 = 1');
+
+    if ('subject' in query && query.subject !== '') {
+      qb.andWhere('FIND_IN_SET(:subject, blogs.subject) > 0', {
+        subject: query.subject,
+      });
+    }
+    if ('from' in query) {
+      qb.offset(query.from);
+    }
+    if ('num' in query) {
+      qb.limit(query.num);
+    }
+
+    qb.orderBy('blogs.createtime', 'DESC');
+
+    const count = await qb.getCount();
+
+    const blogs = await qb.getMany();
+
+    return { data: blogs, count };
   }
 
   findOne(id: number) {

@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   Logger,
+  Query,
 } from '@nestjs/common';
 import { BlogsService } from './blogs.service';
 import { CreateBlogDto } from './dto/create-blog.dto';
@@ -29,8 +30,8 @@ export class BlogsController {
 
   @Get()
   @ApiPaginatedResponse(Blog)
-  async findAll() {
-    return this.blogsService.findAll();
+  async findAll(@Query() query: any) {
+    return this.blogsService.findAll(query);
   }
 
   @Get(':id')

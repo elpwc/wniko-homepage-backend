@@ -1,17 +1,25 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { BlogSubject } from "src/blog-subjects/entities/blog-subject.entity";
 
 export class CreateBlogDto {
-  title: string;
-  author: string;
-  viewCount: number;
-  subjectId: number;
-  subject: string;
-  lang: string;
-  location: string;
-  content: string;
-  headPageUrl: string;
-  access: 'public' | 'urasekai' | 'private';
-  createTime: string;
-  updateTime: string;
-  isDraft: boolean;
+  @ApiProperty()
+  readonly title: string;
+  @ApiProperty()
+  readonly author: string;
+  @ApiProperty()
+  readonly viewCount: number;
+  @ApiProperty()
+  readonly subject: string;
+  @ApiProperty()
+  readonly lang: string;
+  @ApiProperty()
+  readonly location: string;
+  @ApiProperty()
+  readonly content: string;
+  @ApiProperty()
+  readonly headPageUrl: string;
+  @ApiProperty()
+  readonly access: string;
+  @ApiProperty()
+  readonly isDraft: boolean;
 }

@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { BlogSubject } from 'src/blog-subjects/entities/blog-subject.entity';
 import {
+  BeforeUpdate,
   Column,
   Entity,
   JoinColumn,
@@ -37,13 +38,7 @@ export class Blog {
   headPageUrl: string;
   @Column()
   @ApiProperty()
-  access: 'public' | 'urasekai' | 'private';
-  @Column()
-  @ApiProperty()
-  createTime: string;
-  @Column()
-  @ApiProperty()
-  updateTime: string;
+  access: string;
   @Column()
   @ApiProperty()
   isDraft: boolean;
@@ -52,4 +47,17 @@ export class Blog {
   @Column()
   @ApiProperty()
   subject: string;
+  
+  @Column('datetime', { default: () => 'CURRENT_TIMESTAMP' })
+  @ApiProperty()
+  createtime: Date;
+
+  @Column('datetime', { default: () => 'CURRENT_TIMESTAMP' })
+  @ApiProperty()
+  updatetime: Date;
+
+  @BeforeUpdate()
+  updateTimestamp() {
+    this.updatetime = new Date();
+  }
 }
