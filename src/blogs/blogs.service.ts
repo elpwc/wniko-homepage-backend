@@ -27,6 +27,11 @@ export class BlogsService {
         subject: query.subject,
       });
     }
+    if ('includeDraft' in query) {
+      if (query.includeDraft !== '1') {
+        qb.andWhere('blogs.isDraft = 0');
+      }
+    }
     if ('from' in query) {
       qb.offset(query.from);
     }
