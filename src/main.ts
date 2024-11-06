@@ -9,8 +9,9 @@ import {
   SwaggerModule,
 } from '@nestjs/swagger';
 import * as cors from 'cors';
+import { INDEV } from './config';
 
-const PORT = 8001; //process.env.PORT || 8000;
+const PORT = 8002; //process.env.PORT || 8000;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -33,23 +34,26 @@ async function bootstrap() {
 
   SwaggerModule.setup('/api', app, document);
 
-  app.setGlobalPrefix('api/v1');
-
   app.enableCors();
-
-  //防止跨站脚本攻击
-  app.use(helmet());
-
-  //CSRF保护：跨站点请求伪造
+  //app.use(helmet());
   //app.use(csurf());
+  
+  app.setGlobalPrefix(INDEV ? 'api/v1' : 'server/homepage/api/v1');
 
   app.use(
-    cors({
-      origin: 'http://localhost:3000',
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-      allowedHeaders: ['Content-Type'],
-    }),
+    INDEV
+      ? cors({
+          origin: 'http://localhost:3001',
+          methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+          allowedHeaders: ['Content-Type'],
+        })
+      : cors({
+          origin: 'https://www.elpwc.com/',
+          methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+          allowedHeaders: ['Content-Type'],
+        }),
   );
+
 
   await app.listen(PORT, () => {
     Logger.log('Service start.');

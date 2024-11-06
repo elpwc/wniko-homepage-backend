@@ -39,3 +39,4 @@ lerna-debug.log*
 
 ormconfig.json
 /src/config.ts
+/src/dbcfg.ts
