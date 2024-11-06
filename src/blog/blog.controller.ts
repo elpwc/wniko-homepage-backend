@@ -9,14 +9,14 @@ import {
   Logger,
   Query,
 } from '@nestjs/common';
-import { BlogsService } from './blogs.service';
+import { BlogsService } from './blog.service';
 import { CreateBlogDto } from './dto/create-blog.dto';
 import { UpdateBlogDto } from './dto/update-blog.dto';
 import { ApiExtraModels, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ApiPaginatedResponse, ListDto } from 'src/responseData';
 import { Blog } from './entities/blog.entity';
 
-@Controller('blogs')
+@Controller('blog')
 @ApiTags('Blog')
 @ApiExtraModels(ListDto)
 export class BlogsController {

@@ -4,8 +4,8 @@ import {
   NestModule,
   RequestMethod,
 } from '@nestjs/common';
-import { BlogsService } from './blogs.service';
-import { BlogsController } from './blogs.controller';
+import { BlogsService } from './blog.service';
+import { BlogsController } from './blog.controller';
 import { Blog } from './entities/blog.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthMiddleware } from 'auth/auth.middleware';

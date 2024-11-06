@@ -1,4 +1,4 @@
-import { Blog } from 'src/blogs/entities/blog.entity';
+import { Blog } from 'src/blog/entities/blog.entity';
 
 export class CreateBlogSubjectDto {
   id: number;

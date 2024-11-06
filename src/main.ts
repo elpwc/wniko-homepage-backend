@@ -10,10 +10,20 @@ import {
 } from '@nestjs/swagger';
 import * as cors from 'cors';
 import { INDEV } from './config';
+import { AppDataSource } from './dataSource';
 
 const PORT = 8002; //process.env.PORT || 8000;
 
 async function bootstrap() {
+  // https://stackoverflow.com/questions/73142949/nestjs-no-metadata-for-entity-was-found
+  //console.log(1, AppDataSource.isInitialized);
+  if (AppDataSource.isInitialized === false) {
+    await AppDataSource.initialize();
+    //console.log(3, AppDataSource.isInitialized);
+  }
+
+  //console.log(4, AppDataSource.entityMetadatasMap.keys());
+
   const app = await NestFactory.create(AppModule);
 
   app.enableCors();
@@ -37,7 +47,7 @@ async function bootstrap() {
   app.enableCors();
   //app.use(helmet());
   //app.use(csurf());
-  
+
   app.setGlobalPrefix(INDEV ? 'api/v1' : 'server/homepage/api/v1');
 
   app.use(
@@ -53,7 +63,6 @@ async function bootstrap() {
           allowedHeaders: ['Content-Type'],
         }),
   );
-
 
   await app.listen(PORT, () => {
     Logger.log('Service start.');
