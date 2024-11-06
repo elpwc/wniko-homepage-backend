@@ -15,6 +15,7 @@ export class BlogsService {
   ) {}
 
   async create(createBlogDto: CreateBlogDto) {
+    console.log('CREATE blog: ', createBlogDto.title, new Date());
     return await this.blogsRepository.save(createBlogDto);
   }
 
@@ -53,10 +54,12 @@ export class BlogsService {
   }
 
   async update(id: number, updateBlogDto: UpdateBlogDto) {
+    console.log('UPDATE blog: [', id, '] ', updateBlogDto.title, new Date());
     return await this.blogsRepository.update(id, updateBlogDto);
   }
 
   async remove(id: number) {
+    console.log('DELETE blog: [', id, '] ', new Date());
     return await this.blogsRepository.delete(id);
   }
 }
